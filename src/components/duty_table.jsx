@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import React, {Component} from 'react';
-
+import './main.css'
 
 
 class DutyTable extends Component {
@@ -47,11 +47,11 @@ class DutyTable extends Component {
   renderTable = (i) => {
     if (this.state.status[i] === 'checked') 
       return     <>
-      <th id={i} onChange={this.handleClick} scope="row"><Form.Check type="checkbox" class="custom-control-input" id="customCheck1" defaultChecked/></th>
+      <th id={i} onChange={this.handleClick} scope="row"><Form.Check style={{width:30, height:30}} type="checkbox" class="custom-control-input" id="customCheck1" defaultChecked/></th>
       {this.renderSelected(this.state.data[i])}
   </>
     return   <>
-    <th id={i} onChange={this.handleClick} scope="row"> <Form.Check type="checkbox" class="custom-control-input" id="customCheck1" /></th>
+    <th id={i} onChange={this.handleClick} scope="row"> <Form.Check style={{width:30, height:30}} type="checkbox" class="custom-control-input" id="customCheck1" /></th>
     {this.renderRow(this.state.data[i])}
     </>
   }
@@ -59,10 +59,10 @@ class DutyTable extends Component {
   render() { 
     
     return (
-      <Container className='me-3'>
+      <Container>
     <Row>
-    <h3>Duty Manager Check List</h3>
-    <h4>Nov 03, 2022</h4>
+    <h3 className="text-center">Duty Manager Check List</h3>
+    <h4 className="text-center">Nov 03, 2022</h4>
     </Row>
     <Row >
     <Table >
