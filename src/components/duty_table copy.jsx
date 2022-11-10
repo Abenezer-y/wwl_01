@@ -13,20 +13,7 @@ class DutyTable extends Component {
   state = { status: [], 
             id: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34], 
             duty: dt } 
-  
-  // saveStatus = () => {
-  //   const editJsonFile = require("edit-json-file");
-  //   let file  = editJsonFile('./data/status.json')
-  //   console.log(file);
-  // }
 
-  // fromLocal = () => {
-  //   const editJsonFile = require("edit-json-file");
-  //   let file  = editJsonFile('./data/status.json')
-  //   console.log(file);
-  //   // this.setState({status: file.get()}) 
-
-  // }
 
   fetchStatus = async () => {
       const response = await fetch("https://wwl-server.herokuapp.com/status")
@@ -48,7 +35,7 @@ class DutyTable extends Component {
 
 
   handleCheck = (x) => {
-    // console.log(x)
+    console.log(x)
     let new_stat = this.state.status
     if (this.state.status[x] === 'checked')
       {new_stat[x] = ''
@@ -62,10 +49,11 @@ class DutyTable extends Component {
     else {
     new_stat[x] = 'checked'
     this.setState({status: new_stat})
+    console.log(this.state.status)
     fetch("https://wwl-server.herokuapp.com/saveStatus", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({'_id': x, 'status': 'checked'})})
+      body: JSON.stringify({'_id': x, 'status': 'checked'})}).then(console.log(this.state.status))
     }
   }
 
