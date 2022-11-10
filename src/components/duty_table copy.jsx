@@ -29,7 +29,7 @@ class DutyTable extends Component {
   // }
 
   fetchStatus = async () => {
-      const response = await fetch("http://localhost:8000/status")
+      const response = await fetch("https://wwl-server.herokuapp.com/status")
       const status_js = await response.json()
       console.log(status_js)
       this.setState({status: status_js})
@@ -54,7 +54,7 @@ class DutyTable extends Component {
       {new_stat[x] = ''
       this.setState({status: new_stat}) 
       console.log(this.state.status)
-      fetch("http://localhost:8000/saveStatus", {
+      fetch("https://wwl-server.herokuapp.com/saveStatus", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({'_id': x, 'status': ''})})
@@ -62,7 +62,7 @@ class DutyTable extends Component {
     else {
     new_stat[x] = 'checked'
     this.setState({status: new_stat})
-    fetch("http://localhost:8000/saveStatus", {
+    fetch("https://wwl-server.herokuapp.com/saveStatus", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({'_id': x, 'status': 'checked'})})
@@ -82,8 +82,7 @@ class DutyTable extends Component {
                 <td>{this.state.duty.activity[i]}</td>
                 <td>{this.state.duty.estimated_time[i]}</td>
                 <td>{this.state.duty.support[i]}</td>
-            </>)
-    }
+            </>)}
 
   renderTable = (i) => {
     if (this.state.status[i] === 'checked') 
