@@ -3,6 +3,7 @@
 # dependencies
 /data_loader.ipynb
 /node_modules
+/backend
 /.pnp
 .pnp.js
 
