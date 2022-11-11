@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM  from "react-dom";
 import DutyTable from'./components/duty_table copy'
-import 'bootstrap/dist/css/bootstrap.css'
+import Duty from'./components/table_antd'
+// import 'bootstrap/dist/css/bootstrap.css'
 
-ReactDOM.render(<DutyTable />, document.getElementById('root'));
+ReactDOM.render(<Duty />, document.getElementById('root'));

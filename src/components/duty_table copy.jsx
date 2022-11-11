@@ -3,7 +3,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
 import React, {Component} from 'react';
-
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // var stat = require('./data/status.json')
 var dt = require('./data/data.json') 
@@ -60,26 +60,26 @@ class DutyTable extends Component {
   renderSelected = (i) => {
     return <> <td><p className="text-decoration-line-through"> {this.state.duty.time[i]} </p></td>
               <td><p className="text-decoration-line-through"> {this.state.duty.activity[i]}</p></td>
-              <td><p className="text-decoration-line-through"> {this.state.duty.estimated_time[i]} </p></td>
-              <td><p className="text-decoration-line-through"> {this.state.duty.support[i]} </p></td>
+              {/* <td><p className="text-decoration-line-through"> {this.state.duty.estimated_time[i]} </p></td> */}
+              {/* <td><p className="text-decoration-line-through"> {this.state.duty.support[i]} </p></td> */}
            </>
     }
 
   renderRow = (i) =>  {
     return (<>  <td>{this.state.duty.time[i]}</td>
                 <td>{this.state.duty.activity[i]}</td>
-                <td>{this.state.duty.estimated_time[i]}</td>
-                <td>{this.state.duty.support[i]}</td>
+                {/* <td>{this.state.duty.estimated_time[i]}</td> */}
+                {/* <td>{this.state.duty.support[i]}</td> */}
             </>)}
 
   renderTable = (i) => {
     if (this.state.status[i] === 'checked') 
       return     <>
-      <th id={i} onChange={this.handleClick} scope="row"><Form.Check style={{width:30, height:30}} type="checkbox" class="custom-control-input" id="customCheck1" defaultChecked/></th>
+      <th id={i} onChange={this.handleClick} scope="row"><Form.Check  style={{height: '40px', width: '40px'}} type="checkbox" className="custom-control-input w-auto p-3" id="customCheck1" defaultChecked/></th>
       {this.renderSelected(i)}
   </>
     return   <>
-    <th id={i} onChange={this.handleClick} scope="row"> <Form.Check style={{width:30, height:30}} type="checkbox" class="custom-control-input" id="customCheck1" /></th>
+    <th id={i} onChange={this.handleClick} scope="row"> <Form.Check style={{height: '40px', width: '40px'}} type="checkbox" className="custom-control-input w-auto p-3" id="customCheck1" /></th>
     {this.renderRow(i)}
     </>
   }
@@ -99,8 +99,8 @@ class DutyTable extends Component {
           <th scope="col"> </th>
           <th scope="col">Time</th>
           <th scope="col">Activity</th>
-          <th scope="col">Estimated Time</th>
-          <th scope="col">Support</th>
+          {/* <th scope="col">Estimated Time</th> */}
+          {/* <th scope="col">Support</th> */}
         </tr>
       </thead>
 
