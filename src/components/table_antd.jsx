@@ -29,7 +29,7 @@ const Duty = () => {
     const [list10, setList10] = useState([])
  
     const fetchStatus = async () => {
-        const response = await fetch("http://localhost:8000/allData")
+        const response = await fetch("https://wwl-server.herokuapp.com/allData")
         const status_js = await response.json()
 
         setList1(status_js[0]) 
