@@ -58,7 +58,7 @@ def get__data(collection, credential):
     df = pd.read_json(json.dumps(response_json))
     return df
 
-
+df_db = get__data(collection='activity_02', credential=wwl_db)
 
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
@@ -74,15 +74,25 @@ async def read_root() -> dict:
 
 @app.post("/saveStatus", tags=["root"])
 async def add_staus(status: dict) -> dict:
-    update_data('status', {'_id': int(status['_id'])}, {'status': status['status']}, wwl_db)
+    update_data('status', {'_id': status['_id']}, {'status': status['status'], }, wwl_db)
     print(status)
+    return 'Updated'
+
+
+@app.post("/editStatus", tags=["root"])
+async def edit_staus(status: dict) -> dict:
+    print(status)
+    data = df_db[df_db['_id']==status['_id']]
+    print(data['activity'].values.tolist()[0])
+    print(update_data('activity_02', {'activity': data['activity'].values.tolist()[0]}, {'status': status['status'], 'activity': data['activity'].values.tolist()[0], 'time':data['time'].values.tolist()[0]}, wwl_db))
+    # print({'status': status['status'], 'activity': data['activity'][0], 'time':data['time'][0]})
     return 'Updated'
 
 
 @app.get("/allData", tags=["root"])
 def get_all():
-    df = get__data(collection='activity_01', credential=wwl_db)
-    df.head(3)
+    df = get__data(collection='activity_02', credential=wwl_db)
+    print(df.head(3))
     lt = ['1530', '1530-1630', '1630', '1630-1730', '1700', '1730', '2350/0050 (After close of final session)', '0015/0115 ', '(After last guest leave skate exchange)', '0130/0230']
     segemented_activity = []
     for t in lt:

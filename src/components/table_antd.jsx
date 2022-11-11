@@ -1,4 +1,4 @@
-import { Layout, Divider, Form, Checkbox , List, Typography  } from 'antd';
+import { Layout, Divider, Checkbox , List, Typography} from 'antd';
 import React, {useState, useEffect} from 'react';
 import './main.css';
 
@@ -11,8 +11,6 @@ var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
 var yyyy = today.getFullYear();
 today = mm + '/' + dd + '/' + yyyy;
-
-const data = [{activity:'Racing car sprays burning fuel into crowd.', status:true}, {activity:'Japanese princess to wed commoner.', status:false}, {activity:'Australian walks 100km after outback crash.', status:false}]
 
 const Duty = () => {
 
@@ -29,9 +27,9 @@ const Duty = () => {
     const [list10, setList10] = useState([])
  
     const fetchStatus = async () => {
-        const response = await fetch("https://wwl-server.herokuapp.com/allData")
+        const response = await fetch("http://localhost:8000/allData")
         const status_js = await response.json()
-
+        console.log(status_js[0])
         setList1(status_js[0]) 
         setList2(status_js[1])
         setList3(status_js[2]) 
@@ -49,6 +47,14 @@ const Duty = () => {
         setTdy(today)
     }, [''])
 
+    const handleCheck = (x, status) => {
+        console.log(x, status)
+        fetch("http://localhost:8000/editStatus", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({'_id': x, 'status': status})})
+        }
+      
 
     const croosOut = (status, text) => {
             if (status) 
@@ -57,11 +63,9 @@ const Duty = () => {
                 return <Text style={{textAlign: 'right'}}>{text}</Text>
     
               };
+
     const onChange = (e) => {
-        // if (e.target.checked,  ) 
-        // croosOut()
-            console.log(`checked = ${e.target.checked}`, e.name);
-            croosOut(e.target.checked, )
+        handleCheck(e.target.id, e.target.checked)
           };
 
     return (<>
@@ -78,43 +82,43 @@ const Duty = () => {
       <Content>
         <Divider>Time - 15:30</Divider>
         <List size="small">
-                {list1.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list1.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 1530-1630</Divider>
         <List size="small">
-                {list2.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list2.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 16:30</Divider>
         <List size="small">
-                {list3.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list3.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 17:00</Divider>
         <List size="small">
-                {list4.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list4.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 17:30</Divider>
         <List size="small">
-                {list5.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list5.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>2350/0050 (After close of final session)</Divider>
         <List size="small">
-                {list6.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list6.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 0015/0115</Divider>
         <List size="small">
-                {list7.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list7.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>After last guest leave skate exchange</Divider>
         <List size="small">
-                {list8.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list8.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 15:30</Divider>
         <List size="small">
-                {list9.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list9.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Divider>Time - 0130/0230</Divider>
         <List size="small">
-                {list10.map(item => (<List.Item><Checkbox onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
+                {list10.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         {/* <Divider>Time - 15:30</Divider> */}
       </Content>
