@@ -28,7 +28,7 @@ const Duty = () => {
     const [list10, setList10] = useState([])
 
     const submit = () => {
-        fetch("http://wwl-server.herokuapp.com/submit")
+        fetch("https://wwl-server.herokuapp.com/submit")
     }
 
     const fetchStatus = async () => {

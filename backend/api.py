@@ -103,7 +103,7 @@ def send_email(filename=None):
             server.sendmail(sender_email, receiver_email, text)
 
 app = FastAPI()
-origins = ["http://localhost", "https://localhost", "http://localhost:3000", "https://localhost:3000", "http://wwl-server.herokuapp.com", "https://wwl-server.herokuapp.com", "https://wwl-beryl.vercel.app", "http://wwl-beryl.vercel.app"]
+origins = ["http://localhost", "https://localhost", "http://localhost:3000", "https://localhost:3000", "https://wwl-server.herokuapp.com", "https://wwl-server.herokuapp.com", "https://wwl-beryl.vercel.app", "http://wwl-beryl.vercel.app"]
 
 
 
