@@ -15,7 +15,7 @@ today = mm + '/' + dd + '/' + yyyy;
 const Duty = () => {
 
     const [tdy, setTdy] = useState([])
-    const [button_stat, setButn] = useState(true)
+//     const [button_stat, setButn] = useState(true)
     const [list1, setList1] = useState([])
     const [list2, setList2] = useState([])
     const [list3, setList3] = useState([])
