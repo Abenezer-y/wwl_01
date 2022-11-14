@@ -32,7 +32,7 @@ const Duty = () => {
     }
 
     const fetchStatus = async () => {
-        const response = await fetch("http://wwl-server.herokuapp.com/allData")
+        const response = await fetch("https://wwl-server.herokuapp.com/allData")
         const status_js = await response.json()
 
         setList1(status_js[0]) 
