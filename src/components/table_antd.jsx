@@ -53,20 +53,6 @@ const Duty = () => {
         console.log('Data loaded')
     }, [])
 
-//     const check_button = () => {
-//         list1.map(item => {if (!item.status) return true})
-//         list2.map(item => {if (!item.status) return true })
-//         list3.map(item => {if (!item.status) return true })
-//         list4.map(item => {if (!item.status) return true })
-//         list5.map(item => {if (!item.status) return true })
-//         list6.map(item => {if (!item.status) return true })
-//         list7.map(item => {if (!item.status) return true })
-//         list8.map(item => {if (!item.status) return true })
-//         list9.map(item => {if (!item.status) return true })
-//         list10.map(item => {if (!item.status) return true })
-//         return false
-//     }
-
     const handleCheck = (x, status) => {
 
         fetch("https://wwl-server.herokuapp.com/editStatus", {
@@ -142,7 +128,7 @@ const Duty = () => {
                 {list10.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Row type="flex" justify="center">
-                <Button onClick={submit} type="primary" size='large'> Submit </Button>
+                <Button onClick={submit} type="primary" size='large' style={{margin: 4}}> Submit </Button>
         </Row>
 
       </Content>

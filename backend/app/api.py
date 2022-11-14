@@ -4,7 +4,7 @@ from dataclasses import dataclass, asdict
 from .functions import wwl_db, get__data, update_data, get_data, file_edittor, send_email
 
 app = FastAPI()
-origins = ['*']
+origins = ["http://localhost", "https://localhost", "http://localhost:3000", "https://localhost:3000", "http://wwl-server.herokuapp.com", "https://wwl-server.herokuapp.com"]
 
 
 app.add_middleware(
@@ -12,7 +12,8 @@ app.add_middleware(
     allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
-    allow_headers=["*"]
+    allow_headers=["*"],
+    expose_headers = ['*']
 )
 
 @dataclass
