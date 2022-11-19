@@ -33,9 +33,9 @@ def get_data(collection, credential):
     Payload = json.dumps({"collection": collection, "database":credential['db'], "dataSource": credential['cluster'], "filter": {}, "limit":5000})
     response = requests.request("POST", findAll_url, headers=headers, data=Payload)
     response_json = response.json()['documents']
-    status = [_['status'] for _ in response_json]
+    # status = [_['status'] for _ in response_json]
     # df = pd.read_json(json.dumps(response_json))
-    return status
+    return response_json
 
 def get__data(collection, credential):
     headers = {'Content-Type': 'application/json', 'Access-Control-Request-Headers': '*','api-key': credential['key']}
@@ -149,9 +149,9 @@ async def get_all():
         segemented_activity.append(temp_lt)
     return segemented_activity
 
-@app.get("/status", tags=["root"])
-async def read_status() -> dict:
-    data = get_data(collection='status', credential=wwl_db)
+@app.get("/attendance", tags=["root"])
+async def read_attendance() -> dict:
+    data = get_data(collection='attendance', credential=wwl_db)
     return data
 
 @app.post("/saveStatus", tags=["root"])

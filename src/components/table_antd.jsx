@@ -15,7 +15,7 @@ today = mm + '/' + dd + '/' + yyyy;
 const Duty = () => {
 
     const [tdy, setTdy] = useState([])
-//     const [button_stat, setButn] = useState(true)
+    const [button_stat, setButn] = useState(true)
     const [list1, setList1] = useState([])
     const [list2, setList2] = useState([])
     const [list3, setList3] = useState([])
@@ -27,12 +27,19 @@ const Duty = () => {
     const [list9, setList9] = useState([])
     const [list10, setList10] = useState([])
 
-    const submit = () => {
-        fetch("https://wwl-server.herokuapp.com/submit")
+    const submit = async () => {
+        await fetch("http://api-all-app.herokuapp.com/sendemail")
+        window.location.reload(true);
+        setButn(true)
     }
 
+
+
     const fetchStatus = async () => {
-        const response = await fetch("https://wwl-server.herokuapp.com/allData")
+        const stat = await fetch("https://api-all-app.herokuapp.com/getStatus")
+        const btn_stat = await stat.json()
+
+        const response = await fetch("https://api-all-app.herokuapp.com/allData")
         const status_js = await response.json()
 
         setList1(status_js[0]) 
@@ -45,17 +52,17 @@ const Duty = () => {
         setList8(status_js[7]) 
         setList9(status_js[8]) 
         setList10(status_js[9]) 
+        setButn(btn_stat)
       }
 
     useEffect(() => {
         fetchStatus()
         setTdy(today)
-        console.log('Data loaded')
     }, [])
 
-    const handleCheck = (x, status) => {
+    const handleCheck = async (x, status) => {
 
-        fetch("https://wwl-server.herokuapp.com/editStatus", {
+        await fetch("https://api-all-app.herokuapp.com/editStatus", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({'_id': x, 'status': status})})
@@ -128,7 +135,7 @@ const Duty = () => {
                 {list10.map(item => (<List.Item><Checkbox id={item.id} onChange={onChange} defaultChecked={item.status}>{croosOut(item.status, item.activity)}</Checkbox></List.Item>))}
         </List>
         <Row type="flex" justify="center">
-                <Button onClick={submit} type="primary" size='large' style={{margin: 4}}> Submit </Button>
+                <Button onClick={submit} type="primary" size='large' style={{margin: 4}} disabled={button_stat}> Submit </Button>
         </Row>
 
       </Content>
