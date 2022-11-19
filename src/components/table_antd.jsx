@@ -28,7 +28,7 @@ const Duty = () => {
     const [list10, setList10] = useState([])
 
     const submit = async () => {
-        await fetch("http://api-all-app.herokuapp.com/sendemail")
+        await fetch("https://api-all-app.herokuapp.com/sendemail")
         window.location.reload(true);
         setButn(true)
     }
